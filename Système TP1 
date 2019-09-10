@@ -1,0 +1,79 @@
+I/Shell
+
+
+1) echo "Tony" > nom.txt
+
+2) echo "Bernis" >> nom.txt  // >> = concaténation
+
+3) cat nom.txt prenom.txt > id.txt
+
+4.1) 0 0 0 toto.c
+.2) 0 0 0
+.3)      0       0       0
+
+5) who | wc -l
+
+6.1) ls -l | grep ".r.xr.xr.x"
+
+6.2) ls -l | grep ".w..-..-.."
+
+7) chmod 640 id.txt
+
+II/Programmation Bash
+
+1)
+
+echo -e  \\n  \\t On déclare la variable locale v1 \\n
+v1=quelque_chose
+echo -e  \\t  La valeur de v1 est :  $v1 \\n
+
+echo -en  \\t  Entrez la nouvelle valeur de v1 :
+read v1
+while  [  -z $v1 ] ; do
+	echo   La valeur de v1 est vide
+	echo -e  Comme preuve je vous l\'affiche : $v1
+	echo -en  \\t  Entrez la nouvelle valeur de v1 :
+	read v1
+done
+echo   "  Nouvelle valeur de v1 : $v1 "
+
+
+2)
+
+#!/bin/bash
+
+echo  " "    # pour sauter une ligne
+
+if [ $# == 0 ]  ; then
+	echo -e "   Ce script qui s'appelle $0 n'a pas d'argument ! \\n"
+else
+	shift 2
+	echo -e  \\t Le premier argument de $0 :  $1 \\n
+	if [ $#  >  1 ] ; then
+	   echo -e \\t Les arguments suivants du script $0 :  \( 1 arg par ligne \)
+	   for i in  $*  ; do
+	     echo  -e \\t \\t $i
+	   done
+	fi
+fi
+
+//shift 2 permet de sauter les 2 premiers arguments.
+
+
+2.1)
+
+#!/bin/bash
+
+if [ $# -lt 2 ]  ; then
+  echo -e "Ce script n'a pas 2 arguments! \\n"
+else
+  v1=$1
+  v2=$2
+  somme=$((v1+v2))
+  echo -e "La somme de $1 et $2 est $somme"
+fi
+
+
+2.2)
+
+
